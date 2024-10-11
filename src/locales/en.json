@@ -33,7 +33,7 @@
   "admin_settings.current_save.value": "Save Settings",
   "admin_settings.page-title": "Settings - Etherpad",
 
-  "index.newPad": "New Pad",
+  "index.newPad": "New Project",
   "index.createOpenPad": "or create/open a Pad with the name:",
   "index.openPad": "open an existing Pad with the name:",
 
