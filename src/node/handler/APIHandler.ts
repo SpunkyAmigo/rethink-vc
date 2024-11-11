@@ -28,6 +28,9 @@ import {Http2ServerRequest} from "node:http2";
 import {publicKeyExported} from "../security/OAuth2Provider";
 import {jwtVerify} from "jose";
 import {APIFields, apikey} from './APIKeyHandler'
+
+
+
 // a list of all functions
 const version:MapArrayType<any> = {};
 
@@ -207,3 +210,42 @@ exports.handle = async function (apiVersion: string, functionName: string, field
   // call the api function
   return api[functionName].apply(this, functionParams);
 };
+
+
+import { Request, Response } from 'express';
+import simpleGit from 'simple-git';
+import fs from 'fs';
+import path from 'path';
+const GIT_REPO_PATH = 'F:/FYP/padcontent';
+const git = simpleGit(GIT_REPO_PATH);
+
+
+
+export const commitAndPush = async (req: Request, res: Response) => {
+  // const { commitMessage, padID } = req.body;
+  const { padID } = req.body;
+
+  try {
+      // Fetch pad instance and its content
+      const pad = await padManager.getPad(padID); // Retrieve the pad instance
+      const padContent = pad.getText();  // Get the pad content as text
+
+      // Define file path for pad content storage
+      const PAD_FILE_PATH = path.join(GIT_REPO_PATH, `${padID}.txt`);
+      fs.writeFileSync(PAD_FILE_PATH, padContent);
+
+      // // Perform Git operations: add, commit, and push
+      // await git.add(PAD_FILE_PATH);
+      // await git.commit(commitMessage);
+      // await git.push();
+
+      res.status(200).json({ message: "Commit and push successful!" });
+  } catch (error) {
+      console.error("Error in commit/push:", error);
+      res.status(500).json({ message: "Error during commit/push" });
+  }
+};
+import express from 'express';
+const app = express();
+
+app.post('/api/commitAndPush', commitAndPush);
