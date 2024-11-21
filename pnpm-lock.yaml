@@ -219,8 +219,8 @@ importers:
         specifier: ^2.1.35
         version: 2.1.35
       oidc-provider:
-        specifier: ^8.5.2
-        version: 8.5.2
+        specifier: ^8.6.0
+        version: 8.6.0
       openapi-backend:
         specifier: ^5.11.0
         version: 5.11.0
@@ -3746,8 +3746,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.0.7:
-    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
+  nanoid@5.0.8:
+    resolution: {integrity: sha512-TcJPw+9RV9dibz1hHUzlLVy8N4X9TnwirAjrU08Juo6BNKggzVfP2ZJ/3ZUSq15Xl5i85i+Z89XBO90pB2PghQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
@@ -3825,8 +3825,8 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
-  oidc-provider@8.5.2:
-    resolution: {integrity: sha512-WhMIQ61KMgABvrYZJDuefOWFpX34DWgg+U4juKARplGhNUSNfHgJh6i6Mp+PTO08ZDk/oj1Ci7ScU6CAI/wgcg==}
+  oidc-provider@8.6.0:
+    resolution: {integrity: sha512-LTzQza+KA72fFWe/70ttjTpCPvwZRoaydPFY2izNfQjo6u33lFOzJeqA9Q0TblTShkaH56ChoE2KdMYIQlNHdw==}
 
   oidc-token-hash@5.0.3:
     resolution: {integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==}
@@ -7356,7 +7356,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.0
       eslint: 9.13.0
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@9.13.0))(eslint@9.13.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@9.13.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1)(eslint@9.13.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.6
@@ -7368,7 +7368,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@9.13.0))(eslint@9.13.0):
+  eslint-module-utils@2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@9.13.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -7407,7 +7407,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.13.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@9.13.0))(eslint@9.13.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.17.0(eslint@9.13.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@9.13.0)
       hasown: 2.0.2
       is-core-module: 2.15.0
       is-glob: 4.0.3
@@ -8583,7 +8583,7 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  nanoid@5.0.7: {}
+  nanoid@5.0.8: {}
 
   natural-compare@1.4.0: {}
 
@@ -8658,7 +8658,7 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  oidc-provider@8.5.2:
+  oidc-provider@8.6.0:
     dependencies:
       '@koa/cors': 5.0.0
       '@koa/router': 13.1.0
@@ -8668,7 +8668,7 @@ snapshots:
       jose: 5.9.6
       jsesc: 3.0.2
       koa: 2.15.3
-      nanoid: 5.0.7
+      nanoid: 5.0.8
       object-hash: 3.0.0
       oidc-token-hash: 5.0.3
       quick-lru: 7.0.0
