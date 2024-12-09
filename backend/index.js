@@ -33,7 +33,7 @@ async function fetchPadContent() {``
 // API to Commit Changes
 app.post('/api/commit', async (req, res) => {
     const { commitMessage } = req.body;
-   
+    
     // Fetch pad content from Etherpad API
     const padContent = await fetchPadContent(); // Implement this function to get content from Etherpad
 
