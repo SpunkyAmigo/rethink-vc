@@ -119,92 +119,99 @@
   </header>
 
   <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="max-w-3xl mx-auto space-y-8">
-      <div class="bg-white shadow-sm rounded-lg p-6 space-y-6">
-        <div class="flex items-center space-x-4">
-          <div class="custom-select" id="authorSelect">
-            <div class="custom-select-trigger">
-              <span id="selectedAuthorText">Select author</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </div>
-            <div class="custom-select-options" id="authorOptions">
-              <div class="custom-select-option">All Authors</div>
-            </div>
-          </div>
-          <button id="showAllButton"
-            class="hidden px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            Show All
-          </button>
-        </div>
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <label for="timeline-slider" class="block text-sm font-medium text-gray-700">
-              Timeline
-            </label>
-            <div class="flex items-center space-x-2">
-              <!-- Previous Version -->
-              <button id="leftstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 18L9 12l6-6" />
-                </svg>
-              </button>
-              <!-- <button id="playpause_button_icon" class="buttonicon buttonicon-play"></button> -->
-              <button id="playpause_button_icon" class="p-2 border border-gray-300 rounded-md hover:bg-gray-50">
-                <svg id="playPauseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="5 3 19 12 5 21 5 3" />
-                </svg>
-              </button>
-              <!-- Next Version -->
-              <button id="rightstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <!-- <input type="range" id="timeline-slider" min="0" max="100" value="50" class="custom-slider"> -->
-            <div id="timeslider-wrapper">
-              <div id="timeslider-slider">
-                <div id="ui-slider-handle"></div>
-                <div id="ui-slider-bar"></div>
-                <div id="timer"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-100 rounded p-4">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Version Details</h3>
-          <p class="text-sm text-gray-600" id="versionDetails">
-            Version: <span id="revision_label"></span>
-            <br>
-            Author: <span id="authorsList" data-l10n-id="timeslider.toolbar.authorsList"></span>
-            <br>
-            Date: <span id="revision_date"></span>
-          </p>
-        </div>
-        <div class="bg-gray-100 rounded p-4">
+    <div class="max-w-7xl mx-auto flex gap-8">
+      <!-- Authors List Sidebar -->
+      <div class="w-64 flex-shrink-0">
+        <div class="bg-white shadow-sm rounded-lg p-6">
           <h3 class="text-lg font-medium text-gray-900 mb-2">Authors</h3>
           <ul id="listAuthorsOfPads" class="text-sm text-gray-600 space-y-2"></ul>
         </div>
-        <div class="bg-white shadow-sm rounded-lg p-6">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Pad Content</h3>
-          <div id="padContent" class="text-sm text-gray-600">
-            <div id="outerdocbody">
-              <div id="innerdocbody">
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-grow space-y-8">
+        <div class="bg-white shadow-sm rounded-lg p-6 space-y-6">
+          <div class="flex items-center space-x-4">
+            <div class="custom-select" id="authorSelect">
+              <div class="custom-select-trigger">
+                <span id="selectedAuthorText">Select author</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="custom-select-options" id="authorOptions">
+                <div class="custom-select-option">All Authors</div>
+              </div>
+            </div>
+            <button id="showAllButton"
+              class="hidden px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              Show All
+            </button>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <label for="timeline-slider" class="block text-sm font-medium text-gray-700">
+                Timeline
+              </label>
+              <div class="flex items-center space-x-2">
+                <!-- Previous Version -->
+                <button id="leftstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18L9 12l6-6" />
+                  </svg>
+                </button>
+                <!-- <button id="playpause_button_icon" class="buttonicon buttonicon-play"></button> -->
+                <button id="playpause_button_icon" class="p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                  <svg id="playPauseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                </button>
+                <!-- Next Version -->
+                <button id="rightstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <!-- <input type="range" id="timeline-slider" min="0" max="100" value="50" class="custom-slider"> -->
+              <div id="timeslider-wrapper">
+                <div id="timeslider-slider">
+                  <div id="ui-slider-handle"></div>
+                  <div id="ui-slider-bar"></div>
+                  <div id="timer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded p-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Version Details</h3>
+            <p class="text-sm text-gray-600" id="versionDetails">
+              Version: <span id="revision_label"></span>
+              <br>
+              Author: <span id="authorsList" data-l10n-id="timeslider.toolbar.authorsList"></span>
+              <br>
+              Date: <span id="revision_date"></span>
+            </p>
+          </div>
+          <div class="bg-white shadow-sm rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Pad Content</h3>
+            <div id="padContent" class="text-sm text-gray-600">
+              <div id="outerdocbody">
+                <div id="innerdocbody">
+                </div>
               </div>
             </div>
           </div>
