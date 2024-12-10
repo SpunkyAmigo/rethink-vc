@@ -5,102 +5,222 @@
 <!doctype html>
 <html translate="no" class="pad <%=settings.skinVariants%>">
 <head>
-  <title data-l10n-id="timeslider.pageTitle" data-l10n-args='{ "appTitle": "<%=settings.title%>" }'><%=settings.title%> Timeslider</title>
   <script>
-    /*
-    |@licstart  The following is the entire license notice for the
-    JavaScript code in this page.|
-
-    Copyright 2011 Peter Martischka, Primary Technology.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
-    |@licend  The above is the entire license notice
-    for the JavaScript code in this page.|
-    */
+    function goBack() {
+      const url = window.location.href;
+      const baseUrl = url.split('/timeslider')[0];
+      window.location.href = baseUrl;
+    }
   </script>
+  <title data-l10n-id="timeslider.pageTitle" data-l10n-args='{ "appTitle": "<%=settings.title%>" }'><%=settings.title%> Timeslider</title>
   <meta charset="utf-8">
   <link rel="manifest" href="../../../manifest.json" />
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <link rel="shortcut icon" href="../../favicon.ico">
-  <% e.begin_block("timesliderStyles"); %>
   <link rel="stylesheet" href="../../static/css/pad.css?v=<%=settings.randomVersionString%>">
   <link rel="stylesheet" href="../../static/css/iframe_editor.css?v=<%=settings.randomVersionString%>">
   <link rel="stylesheet" href="../../static/css/timeslider.css?v=<%=settings.randomVersionString%>">
-  <link rel="stylesheet" href="../../static/skins/<%=encodeURI(settings.skinName)%>/pad.css?v=<%=settings.randomVersionString%>">
-  <link rel="stylesheet" href="../../static/skins/<%=encodeURI(settings.skinName)%>/timeslider.css?v=<%=settings.randomVersionString%>">
+  <!-- <link rel="stylesheet" href="../../static/skins/<%=encodeURI(settings.skinName)%>/pad.css?v=<%=settings.randomVersionString%>"> -->
+  <!-- <link rel="stylesheet" href="../../static/skins/<%=encodeURI(settings.skinName)%>/timeslider.css?v=<%=settings.randomVersionString%>"> -->
   <style type="text/css" title="dynamicsyntax"></style>
-  <% e.end_block(); %>
-
   <link rel="localizations" type="application/l10n+json" href="../../locales.json" />
-  <% e.begin_block("timesliderScripts"); %>
-  <% e.end_block(); %>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for select and slider */
+    .custom-select {
+      position: relative;
+      width: 200px;
+    }
+
+    .custom-select-trigger {
+      border: 1px solid #d1d5db;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0.375rem;
+      cursor: pointer;
+    }
+
+    .custom-select-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .custom-select-options.show {
+      display: block;
+    }
+
+    .custom-select-option {
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+    .custom-select-option:hover {
+      background-color: #f3f4f6;
+    }
+
+    .custom-slider {
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      outline: none;
+      border-radius: 4px;
+    }
+
+    .custom-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #3b82f6;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    button svg {
+      transition: all 0.2s;
+    }
+
+    button:hover svg {
+      transform: scale(1.1);
+    }
+
+    .space-x-2>*+* {
+      margin-left: 0.5rem;
+    }
+  </style>
 </head>
 
-<% e.begin_block("timesliderBody"); %>
-<body id="padbody" class="timeslider limwidth">
+<body id="padbody" class="min-h-screen bg-gray-50 flex flex-col">
+  <!-- My Navbar -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <h1 class="text-2xl font-semibold text-gray-900">Pad Timeline</h1>
+      <button onclick="goBack()"
+        class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+          <path d="M15 18L9 12l6-6" />
+        </svg>
+        Back to Pad
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="bg-white shadow-sm rounded-lg p-6 space-y-6">
+        <div class="flex items-center space-x-4">
+          <div class="custom-select" id="authorSelect">
+            <div class="custom-select-trigger">
+              <span id="selectedAuthorText">Select author</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+            <div class="custom-select-options" id="authorOptions">
+              <div class="custom-select-option">All Authors</div>
+            </div>
+          </div>
+          <button id="showAllButton"
+            class="hidden px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Show All
+          </button>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <label for="timeline-slider" class="block text-sm font-medium text-gray-700">
+              Timeline
+            </label>
+            <div class="flex items-center space-x-2">
+              <!-- Previous Version -->
+              <button id="leftstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 18L9 12l6-6" />
+                </svg>
+              </button>
+              <!-- <button id="playpause_button_icon" class="buttonicon buttonicon-play"></button> -->
+              <button id="playpause_button_icon" class="p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg id="playPauseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </button>
+              <!-- Next Version -->
+              <button id="rightstep" class="stepper p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <!-- <input type="range" id="timeline-slider" min="0" max="100" value="50" class="custom-slider"> -->
+            <div id="timeslider-wrapper">
+              <div id="timeslider-slider">
+                <div id="ui-slider-handle"></div>
+                <div id="ui-slider-bar"></div>
+                <div id="timer"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-100 rounded p-4">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Version Details</h3>
+          <p class="text-sm text-gray-600" id="versionDetails">
+            Version: <span id="revision_label"></span>
+            <br>
+            Author: <span id="authorsList" data-l10n-id="timeslider.toolbar.authorsList"></span>
+            <br>
+            Date: <span id="revision_date"></span>
+          </p>
+        </div>
+        <div class="bg-white shadow-sm rounded-lg p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Pad Content</h3>
+          <div id="padContent" class="text-sm text-gray-600">
+            <div id="outerdocbody">
+              <div id="innerdocbody">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <!----------------------------->
   <!--------- TOOLBAR ----------->
   <!----------------------------->
   <div id="editbar" class="toolbar">
-    <% e.begin_block("timesliderTop"); %>
-
-    <!-- TITLE & TOOLBAR -->
-    <div class="timeslider-bar">
-
-      <div class="timeslider-title-container">
-        <h1 class="timeslider-title">
-          <span id="revision_label"></span>
-          <span id="revision_date"></span>
-        </h1>
-        <p class="timeslider-subtitle">
-          <span class="authors-label" data-l10n-id="timeslider.toolbar.authors"></span>
-          <span id="authorsList" data-l10n-id="timeslider.toolbar.authorsList"></span>
-        </p>
-      </div>
-
-      <div class="editbarright menu_right">
-        <ul>
-          <% e.begin_block("timesliderEditbarRight"); %>
-            <%- toolbar.menu(settings.toolbar.timeslider, true, 'timeslider-right', 'timeslider') %>
-          <% e.end_block(); %>
-        </ul>
-      </div>
-    </div>
-
     <!-- SLIDER -->
-    <div id="timeslider-wrapper">
+    <!-- <div id="timeslider-wrapper">
       <div id="timeslider-slider">
         <div id="ui-slider-handle"></div>
         <div id="ui-slider-bar"></div>
         <div id="timer"></div>
       </div>
-
-      <div id="slider-btn-container">
-        <button id="playpause_button_icon" class="buttonicon buttonicon-play"></button>
-        <button id="leftstep"  class="stepper buttonicon buttonicon-step-backward"></button>
-        <button id="rightstep" class="stepper buttonicon buttonicon-step-forward"></button>
-        <!-- Left and Right star button are actually not displayed to the screen -->
-        <button id="leftstar"  class="stepper buttonicon" style="display:none"></button>
-        <button id="rightstar" class="stepper buttonicon" style="display:none"></button>
-      </div>
-    </div>
-
-
-  <% e.end_block(); %>
+    </div> -->
   </div>
 
 
@@ -110,10 +230,10 @@
     <!------- PAD CONTENT --------->
     <!----------------------------->
 
-    <div id="outerdocbody">
+    <!-- <div id="outerdocbody">
       <div id="innerdocbody">
       </div>
-    </div>
+    </div> -->
 
 
     <!------------------------->
@@ -255,6 +375,5 @@
 
 <!-- Bootstrap -->
 <script src="<%=entrypoint%>"></script>
-<% e.end_block(); %>
 <div style="display:none"><a href="/javascript" data-jslicense="1">JavaScript license information</a></div>
 </html>
