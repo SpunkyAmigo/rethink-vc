@@ -169,8 +169,7 @@ exports.handle = async function (apiVersion: string, functionName: string, field
     throw new createHTTPError.NotFound('no such function');
   }
 
-
-
+  /*
   if (apikey !== null && apikey.trim().length > 0) {
     fields.apikey = fields.apikey || fields.api_key || fields.authorization;
     // API key is configured, check if it is valid
@@ -188,6 +187,7 @@ exports.handle = async function (apiVersion: string, functionName: string, field
       throw new createHTTPError.Unauthorized('no or wrong OAuth token');
     }
   }
+  */
 
   // sanitize any padIDs before continuing
   if (fields.padID) {
