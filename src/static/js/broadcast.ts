@@ -440,6 +440,40 @@ const loadBroadcastJS = (socket, sendSocketMsg, fireWhenAllScriptsAreLoaded, Bro
     },
   };
 
+  const fetchAndDisplayAuthors = async (padId) => {
+    try {
+      const response = await fetch(`/api/1.3.0/listAuthorsOfPad?padID=${padId}`);
+      const data = await response.json();
+      
+      if (data.code === 0) { // Success
+        const authorsList = document.getElementById('listAuthorsOfPads');
+        authorsList.innerHTML = ''; // Clear existing list
+        
+        data.data.authorIDs.forEach(authorId => {
+          const li = document.createElement('li');
+          li.className = 'flex items-center space-x-2';
+          
+          // Get author data if available
+          const author = authorData[authorId];
+          const bgcolor = author ? (
+            typeof author.colorId === 'number' 
+              ? clientVars.colorPalette[author.colorId] 
+              : author.colorId
+          ) : '#ccc';
+          
+          li.innerHTML = `
+            <span class="inline-block w-4 h-4 rounded-full" style="background-color: ${bgcolor}"></span>
+            <span>${author?.name || 'Anonymous'} (${authorId})</span>
+          `;
+          
+          authorsList.appendChild(li);
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching authors:', error);
+    }
+  };
+
   // to start upon window load, just push a function onto this array
   // window['onloadFuncts'].push(setUpSocket);
   // window['onloadFuncts'].push(function ()
@@ -452,6 +486,8 @@ const loadBroadcastJS = (socket, sendSocketMsg, fireWhenAllScriptsAreLoaded, Bro
       padContents.currentDivs.push(div);
       $('#innerdocbody').append(div);
     }
+    const padId = clientVars.padId;
+    fetchAndDisplayAuthors(padId);
   });
 
   // this is necessary to keep infinite loops of events firing,
@@ -477,10 +513,13 @@ const loadBroadcastJS = (socket, sendSocketMsg, fireWhenAllScriptsAreLoaded, Bro
         const selector = dynamicCSS.selectorStyle(`.${linestylefilter.getAuthorClassName(author)}`);
         selector.backgroundColor = bgcolor;
         selector.color = (colorutils.luminosity(colorutils.css2triple(bgcolor)) < 0.5)
-          ? '#ffffff' : '#000000'; // see ace2_inner.js for the other part
+          ? '#ffffff' : '#000000';
       }
       authorData[author] = data;
     }
+    
+    // Refresh the authors list when new author data is received
+    fetchAndDisplayAuthors(clientVars.padId);
   };
 
   receiveAuthorData(clientVars.collab_client_vars.historicalAuthorData);
