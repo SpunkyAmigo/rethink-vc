@@ -52,14 +52,47 @@
   <% e.end_block(); %>
 
   <link rel="localizations" type="application/l10n+json" href="../locales.json" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
   <% e.begin_block("body"); %>
 
+  <!-- NAVBAR -->
+  <header class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center">
+        <!-- Left side with pad name -->
+        <div class="flex items-center">
+          <h1 class="text-2xl font-semibold text-gray-900"><%=settings.title%></h1>
+        </div>
+        
+        <!-- Right side with buttons -->
+        <div class="flex items-center space-x-4">
+          <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm font-medium transition-colors duration-150">
+            Make Commit
+          </button>
+          
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium transition-colors duration-150">
+            Push
+          </button>
+          
+          <button onclick="window.location.href='/'"
+            class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center transition-colors duration-150">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+              <path d="M15 18L9 12l6-6" />
+            </svg>
+            Back to Pads
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <!----------------------------->
   <!--------- TOOLBAR ----------->
   <!----------------------------->
-  <div id="editbar" class="toolbar">
+  <div id="editbar" class="toolbar bg-gray-50 border-b border-gray-200 shadow-sm">
       <div id="toolbar-overlay"></div>
 
       <ul class="menu_left" role="toolbar">
