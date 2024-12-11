@@ -104,6 +104,14 @@
                                 window.location.href = `/p/${pad}`;
                             });
 
+                            const timesliderButton = document.createElement('button');
+                            timesliderButton.className = 'ml-2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600';
+                            timesliderButton.textContent = 'Timeline';
+                            timesliderButton.addEventListener('click', (event) => {
+                                event.stopPropagation();
+                                window.location.href = `/p/${pad}/timeslider`;
+                            });
+
                             const deleteButton = document.createElement('button');
                             deleteButton.className = 'ml-2 px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600';
                             deleteButton.textContent = 'Delete';
@@ -128,6 +136,7 @@
                             });
 
                             listItem.appendChild(button);
+                            listItem.appendChild(timesliderButton);
                             listItem.appendChild(deleteButton);
                             padList.appendChild(listItem);
                         });
