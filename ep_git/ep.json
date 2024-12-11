@@ -1,0 +1,10 @@
+{
+    "parts": [
+        {
+            "name": "ep_git",
+            "hooks": {
+                "eejsBlock_htmlHead": "ep_git/index.js:eejsBlock_htmlHead"
+            }
+        }
+    ]
+}
