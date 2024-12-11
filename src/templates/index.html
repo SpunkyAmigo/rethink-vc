@@ -34,17 +34,13 @@
                 <% if (!settings.requireSession) { %>
                 <div class="bg-white shadow-sm rounded-lg p-6 space-y-4">
                     <h2 class="text-lg font-medium text-gray-900">
-                        <% if (settings.editOnly) { %>
-                            <span data-l10n-id="index.openPad"></span>
-                        <% } else { %>
-                            <span data-l10n-id="index.createOpenPad"></span>
-                        <% } %>
+                        Create or Open a Pad with the name:
                     </h2>
                     <form action="#" id="go2Name" class="flex space-x-4">
                         <input type="text" id="padname" maxlength="50" autofocus x-webkit-speech
                             placeholder="Enter pad name" 
                             class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">OK</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Create/Open Pad</button>
                     </form>
                     <% if (!settings.editOnly) { %>
                     <div class="flex justify-center">
