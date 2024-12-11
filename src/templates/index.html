@@ -78,7 +78,7 @@
         <script>
             async function fetchPads() {
                 try {
-                    const response = await fetch('http://localhost:9001/api/1.3.0/listAllPads', {
+                    const response = await fetch('/api/1.3.0/listAllPads', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -110,7 +110,7 @@
                             deleteButton.addEventListener('click', async (event) => {
                                 event.stopPropagation(); // Prevent the click from triggering the pad open
                                 try {
-                                    const deleteResponse = await fetch(`http://localhost:9001/api/1.3.0/deletePad?padID=${pad}`, {
+                                    const deleteResponse = await fetch(`/api/1.3.0/deletePad?padID=${pad}`, {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json',
