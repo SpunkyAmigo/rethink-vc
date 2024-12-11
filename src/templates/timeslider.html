@@ -99,6 +99,56 @@
     .space-x-2>*+* {
       margin-left: 0.5rem;
     }
+
+    /* Custom radio button styles */
+    input[type="radio"] {
+      appearance: none;
+      padding: 0;
+      print-color-adjust: exact;
+      display: inline-block;
+      vertical-align: middle;
+      background-origin: border-box;
+      user-select: none;
+      flex-shrink: 0;
+      border-radius: 100%;
+      background-color: #fff;
+      border: 1px solid #d1d5db;
+    }
+
+    input[type="radio"]:checked {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='4'/%3e%3c/svg%3e");
+      border-color: transparent;
+      background-color: #2563eb;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    input[type="radio"]:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b82f6;
+    }
+
+    #listAuthorsOfPads li:hover {
+      background-color: #f9fafb;
+    }
+
+    #listAuthorsOfPads li.selected {
+      background-color: #f3f4f6;
+    }
+
+    #listAuthorsOfPads li {
+      transition: background-color 0.2s;
+    }
+
+    #listAuthorsOfPads li:hover {
+      background-color: #f9fafb;
+    }
+
+    #listAuthorsOfPads li.bg-gray-100 {
+      background-color: #f3f4f6;
+    }
   </style>
 </head>
 
@@ -123,8 +173,15 @@
       <!-- Authors List Sidebar -->
       <div class="w-64 flex-shrink-0">
         <div class="bg-white shadow-sm rounded-lg p-6">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Authors</h3>
-          <ul id="listAuthorsOfPads" class="text-sm text-gray-600 space-y-2"></ul>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-medium text-gray-900">Authors</h3>
+            <button id="clearAuthorFilter" class="text-sm text-blue-600 hover:text-blue-700">
+              Clear
+            </button>
+          </div>
+          <div class="space-y-1">
+            <ul id="listAuthorsOfPads" class="text-sm text-gray-600"></ul>
+          </div>
         </div>
       </div>
 

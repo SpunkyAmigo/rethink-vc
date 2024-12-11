@@ -90,6 +90,8 @@ const init = () => {
     exports.BroadcastSlider = BroadcastSlider; // Make the slider available
 
     hooks.aCallAll('postTimesliderInit');
+
+    initAuthorFilter();
   });
 };
 
@@ -169,6 +171,15 @@ const handleClientVars = (message) => {
   // font family change
   $('#viewfontmenu').on('change', function () {
     $('#innerdocbody').css('font-family', $(this).val() || '');
+  });
+};
+
+const initAuthorFilter = () => {
+  document.getElementById('clearAuthorFilter')?.addEventListener('click', () => {
+    const allItems = document.querySelectorAll('#listAuthorsOfPads li');
+    allItems.forEach(item => item.classList.remove('bg-gray-100'));
+    // TODO: Clear any active filters
+    console.log('Cleared author filter');
   });
 };
 

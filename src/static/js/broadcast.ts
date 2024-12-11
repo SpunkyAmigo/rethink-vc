@@ -451,9 +451,9 @@ const loadBroadcastJS = (socket, sendSocketMsg, fireWhenAllScriptsAreLoaded, Bro
         
         data.data.authorIDs.forEach(authorId => {
           const li = document.createElement('li');
-          li.className = 'flex items-center space-x-2';
+          li.className = 'flex items-center p-2 cursor-pointer hover:bg-gray-50 rounded-md transition-colors';
+          li.dataset.authorId = authorId;
           
-          // Get author data if available
           const author = authorData[authorId];
           const bgcolor = author ? (
             typeof author.colorId === 'number' 
@@ -462,9 +462,22 @@ const loadBroadcastJS = (socket, sendSocketMsg, fireWhenAllScriptsAreLoaded, Bro
           ) : '#ccc';
           
           li.innerHTML = `
-            <span class="inline-block w-4 h-4 rounded-full" style="background-color: ${bgcolor}"></span>
-            <span>${author?.name || 'Anonymous'} (${authorId})</span>
+            <div class="flex items-center space-x-3 w-full">
+              <span class="inline-block w-4 h-4 rounded-full" style="background-color: ${bgcolor}"></span>
+              <span class="text-gray-700">${author?.name || 'Anonymous'}</span>
+            </div>
           `;
+          
+          // Add click handler for selection
+          li.addEventListener('click', (e) => {
+            const allItems = authorsList.querySelectorAll('li');
+            allItems.forEach(item => item.classList.remove('bg-gray-100'));
+            li.classList.add('bg-gray-100');
+            
+            const selectedAuthorId = li.dataset.authorId;
+            // TODO: Add filtering logic here
+            console.log('Selected author:', selectedAuthorId);
+          });
           
           authorsList.appendChild(li);
         });
