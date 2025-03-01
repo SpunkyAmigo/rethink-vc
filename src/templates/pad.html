@@ -43,6 +43,7 @@
 
   <% e.begin_block("styles"); %>
   <link href="../static/css/pad.css?v=<%=settings.randomVersionString%>" rel="stylesheet">
+  <link href="../static/css/pad/filetree.css?v=<%=settings.randomVersionString%>" rel="stylesheet">
 
   <% e.begin_block("customStyles"); %>
   <link href="../static/skins/<%=encodeURI(settings.skinName)%>/pad.css?v=<%=settings.randomVersionString%>" rel="stylesheet">
@@ -89,6 +90,22 @@
     </div>
   </header>
 
+  <!-- FILE TREE SIDEBAR -->
+  <div id="filetree-sidebar" class="bg-white border-r border-gray-200 w-64 fixed left-0 top-0 bottom-0 overflow-y-auto pt-16">
+    <div class="p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Files</h2>
+        <button onclick="FileTree.createChildPad(window.location.pathname.split('/').pop())" 
+                class="px-2 py-1 bg-blue-500 text-white rounded-md text-sm">
+          + New
+        </button>
+      </div>
+      <div id="filetree-content">
+        <!-- Tree content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
   <!----------------------------->
   <!--------- TOOLBAR ----------->
   <!----------------------------->
@@ -110,7 +127,7 @@
 
   <% e.begin_block("afterEditbar"); %><% e.end_block(); %>
 
-  <div id="editorcontainerbox" class="flex-layout">
+  <div id="editorcontainerbox" class="flex-layout ml-64">
 
       <% e.begin_block("editorContainerBox"); %>
 
@@ -479,5 +496,8 @@
   <% e.end_block(); %>
   <div style="display:none"><a href="/javascript" data-jslicense="1">JavaScript license information</a></div>
   <% e.end_block(); %>
+
+  <!-- Add this before the closing body tag -->
+  <script src="../static/js/filetree.js"></script>
 </body>
 </html>
